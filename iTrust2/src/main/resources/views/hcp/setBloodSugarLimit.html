@@ -1,0 +1,142 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="layout :: head(title=~{::title},links=~{::script})">
+<title>Set Blood Sugar Limit</title>
+<script th:src="@{/resources/js/dateTimeService.js}"
+	src="../resources/js/dateTimeService.js"></script>
+</head>
+<body th:include="layout :: body" th:with="content=~{::content}">
+	<div th:fragment="content">
+		<div class="container">
+			<script th:inline="javascript">
+			var app = angular.module('myApp', []);
+			app.filter('humanize', function () {
+		          return function (input) {
+		            return !input ? input : input.toLowerCase().split('_')
+		              .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+		              .join(' ');
+		          }
+		    });
+			app.controller('setBloodSugarLimitCtrl', function ($scope, $http) {
+			          
+	        	  $http.get("/iTrust2/api/v1/patients").then(
+                        function (response) {
+                            $scope.patients = response.data;
+                        });
+	        	  $scope.selectedPatient = null;
+	        	  $scope.bsl = {patient: '',
+	        			  		upperBoundFasting: '',
+	        			  		upperBoundMeal: ''};
+	        	  
+	        	  $scope.populateLimit = function(){
+	        		  $scope.limit = true;
+	        		  $http.get("/iTrust2/api/v1/BSLlimits/" + $scope.bsl.patient).then(
+	                          function (response) {
+	                              $scope.bloodsl = response.data;
+	                              $scope.bsl.upperBoundFasting = $scope.bloodsl.upperBoundFasting;
+	                              $scope.bsl.upperBoundMeal = $scope.bloodsl.upperBoundMeal;
+	                          });
+	        		  
+	        		  
+	        	  }
+	        	  
+	        	  $scope.confirm = function(){
+	        		  
+        			  $http({
+                             method: 'PUT',
+                             url: '/iTrust2/api/v1/BSLlimits',
+                             data: $scope.bsl
+                         }).then(function (response) {
+                             $scope.errorMsg = "";
+                             $scope.message = "blood sugar Limit set successfully";
+                         }, function (rejection) {
+                             $scope.message = "";
+                             $scope.errorMsg = "Error occurred creating blood sugar limit\n";
+                             $scope.errorMsg += "The Upper Bound of Fasting should between 80 - 130\n";
+                             $scope.errorMsg += "The Upper Bound After Meal should between 120 - 180";
+                         })
+	        		  
+	        	  }
+			        	  
+			});
+			</script>
+			<div ng-app="myApp" ng-controller="setBloodSugarLimitCtrl">
+				<div class="container">
+					<div class="row" style="margin-top: 1em">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4>Select a patient to set blood sugar limit</h4>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-12">
+											<ul style="list-style: none;">
+												<li ng-repeat="patient in patients">
+													<label> <input type="radio"
+														ng-model="$parent.bsl.patient" ng-click = "populateLimit()" name="name"
+														value="{{patient.self.username}}" required="true"
+														/> {{patient.self.username}}
+													</label>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" ng-show = "limit">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4>Set blood sugar limit for {{bsl.patient}}</h4>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<label class="col-md-2 control-lable" for="file">Upper Bound of Fasting(80-130 mg/dl)</label>
+										<div class="col-md-12">
+											<input type="number" ng-model="bsl.upperBoundFasting" name="upperBoundFasting"
+												 min="80" required="0" />
+										</div>
+									</div>
+									<div class="row">
+										<label class="col-md-2 control-lable" for="file">Upper Bound After Meal(120-180 mg/dl)</label>
+										<div class="col-md-12">
+											<input type="number" ng-model="bsl.upperBoundMeal" name="upperBoundMeal"
+												 min="80" required="0" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 text-right">
+											<div style="white-space: pre-line;">
+												<div name="success" class="text-success">{{message}}</div>
+												<div name="errorMsg" class="text-danger">{{errorMsg}}</div>
+												<div ng-show = "error1">
+													<font color = "red">
+														
+													</font>
+												</div>
+												<div ng-show = "error2">
+													<font color = "red">
+														
+													</font>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="panel-footer text-right">
+								<!-- button may have to be inside form tag, or just a submit function for the form? -->
+									<button class="btn btn-primary btn-lg" ng-click="confirm()"
+										name="confirm">Confirm</button>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

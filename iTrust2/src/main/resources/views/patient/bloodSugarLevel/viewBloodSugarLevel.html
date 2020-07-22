@@ -1,0 +1,214 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head(title=~{::title},links=~{::script})">
+<title>View Blood Sugar Entry Table</title>
+<script th:src="@{/resources/js/dateTimeService.js}"
+	src="../resources/js/dateTimeService.js"></script>
+</head>
+
+<body th:include="layout :: body" th:with="content=~{::content}">
+	<div th:fragment="content">
+		<div class="container">
+
+			<script th:inline="javascript">
+            /* Otherwise Thymeleaf tries to parse Javascript as XML and breaks itself sometimes.  Sigh */
+            /*<![CDATA[*/
+            var app = angular.module("viewBloodSugarTableApp", ['dateTimeServices']);
+            app.controller('viewBloodSugarTableCtrl', function ($scope, $http, dateTimeService) {
+                $scope.visitInputDate = "";
+                $scope.dateType = "";
+                $scope.show = false;
+                $scope.show1 = false;
+              
+                $scope.toShow = [];
+                $scope.loadData = function () {
+                	$http.get('/iTrust2/api/v1//BSLlimitsPatient').then(function (response) {
+                        $scope.limit = response.data;
+                        
+                        $scope.message = "";
+                    },function (rejection) {
+                        $scope.message = "Could not display blood sugar table entries.";
+                    });
+                	
+                }
+                
+                $scope.change = function(){
+                	if($scope.visitInputDate === "" || $scope.dateType === ""){
+                		$scope.show = false;
+                		
+                	} else{
+                		$scope.show = true;
+                		
+                		
+                	}
+                	
+                	if($scope.show == true){
+                		if($scope.dateType === "DAY"){
+							
+                    		
+                    		var ddd = $scope.visitInputDate.getDate();
+                    		var mmm = $scope.visitInputDate.getMonth() + 1;
+                    		var yy = $scope.visitInputDate.getFullYear();
+                    		var c;
+                    		if(mmm < 10){
+								c = yy + '-0'+ mmm;
+							} else{
+								c = yy + '-'+ mmm;
+							}
+							
+							if(ddd < 10){
+								c = c + '-0' + ddd;
+							} else{
+								c = c + '-' + ddd;
+							}
+                    		
+                			console.log("1");
+                			
+                			//load data
+                			$http.get('/iTrust2/api/v1//BSLdiary/' + c + '/' + $scope.dateType).then(function (response) {
+                                $scope.table = response.data;
+                                
+                                $scope.message = "";
+                            },
+                            function (rejection) {
+                                $scope.message = "Could not display blood sugar table entries.";
+                            });
+                			
+                			
+                			
+                		} else if($scope.dateType === "WEEK"){
+                			var ddd = $scope.visitInputDate.getDate();
+                    		var mmm = $scope.visitInputDate.getMonth() + 1;
+                    		var yy = $scope.visitInputDate.getFullYear();
+                    		var c;
+                    		if(mmm < 10){
+								c = yy + '-0'+ mmm;
+							} else{
+								c = yy + '-'+ mmm;
+							}
+							
+							if(ddd < 10){
+								c = c + '-0' + ddd;
+							} else{
+								c = c + '-' + ddd;
+							}
+                    		
+                			console.log("1");
+                			
+                			//load data
+                			$http.get('/iTrust2/api/v1//BSLdiary/' + c + '/' + $scope.dateType).then(function (response) {
+                                $scope.table = response.data;
+                                
+                                $scope.message = "";
+                            },
+                            function (rejection) {
+                                $scope.message = "Could not display blood sugar table entries.";
+                            });
+                			
+                		} else {
+                			var ddd = $scope.visitInputDate.getDate();
+                    		var mmm = $scope.visitInputDate.getMonth() + 1;
+                    		var yy = $scope.visitInputDate.getFullYear();
+                    		var c;
+                    		if(mmm < 10){
+								c = yy + '-0'+ mmm;
+							} else{
+								c = yy + '-'+ mmm;
+							}
+							
+							if(ddd < 10){
+								c = c + '-0' + ddd;
+							} else{
+								c = c + '-' + ddd;
+							}
+                    		
+                			console.log("1");
+                			
+                			//load data
+                			$http.get('/iTrust2/api/v1//BSLdiary/' + c + '/' + $scope.dateType).then(function (response) {
+                                $scope.table = response.data;
+                                
+                                $scope.message = "";
+                            },
+                            function (rejection) {
+                                $scope.message = "Could not display blood sugar table entries.";
+                            });
+                			
+                		}
+                		
+                		
+                	}
+                }
+                $scope.loadData();
+                
+            });
+
+            
+            
+            /*]]>*/
+          </script>
+
+			<div ng-app="viewBloodSugarTableApp" ng-controller="viewBloodSugarTableCtrl">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3>Blood Sugar Table</h3>
+								</div>
+								<div class="panel-body">
+									<div style="margin-left: 10px;">
+										<div class="form-group col-md-2">
+											<label>Date:</label> <input class="form-control" type="date"
+												id="date" name="date" ng-model="visitInputDate"
+													required="true" ng-change = "change()"/>
+										</div>
+										<div class="form-group col-md-2">
+										<label>Display By:</label>
+											<select name="dateType" ng-model="dateType"
+												required="true" ng-change = "change()">
+												<option value="DAY">day</option>
+												<option value="WEEK">week</option>
+												<option value="MONTH">month</option>
+											</select>
+										</div>
+									
+									<table class="table table-bordered" ng-show="show">
+										<thead>
+											<tr>
+												<th>Date</th>
+												<th>fasting blood sugar</th>
+												<th>levels 2 hours after breakfast</th>
+												<th>levels 2 hours after lunch</th>
+												<th>levels 2 hours after dinner</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+											<!-- <span ng-if="!(d.calories>1)">{{d.calories}}</span>
+													<span ng-if="d.calories>1"><strong style="color: red;">{{d.calories}}</strong></span> -->
+											<tr ng-repeat="d in table">
+												<td id="viewDate">
+													{{d.date}}
+												</td>
+												
+												<td id="FBS"><span ng-if="!(d.fasting > limit.upperBoundFasting)">{{d.fasting}}</span>
+													<span ng-if="d.fasting > limit.upperBoundFasting"><strong style="color: red;"><u>{{d.fasting}}</u></strong></span></td>
+												<td id="Breakfast"><span ng-if="!(d.meal1 > limit.upperBoundMeal)">{{d.meal1}}</span>
+													<span ng-if="d.meal1 > limit.upperBoundMeal"><strong style="color: red;"><u>{{d.meal1}}</u></strong></span></td>
+												<td id="Lunch"><span ng-if="!(d.meal2 > limit.upperBoundMeal)">{{d.meal2}}</span>
+													<span ng-if="d.meal2 > limit.upperBoundMeal"><strong style="color: red;"><u>{{d.meal2}}</u></strong></span></td>
+												<td id="Dinner"><span ng-if="!(d.meal3 > limit.upperBoundMeal)">{{d.meal3}}</span>
+													<span ng-if="d.meal3 > limit.upperBoundMeal"><strong style="color: red;"><u>{{d.meal3}}</u></strong></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>
