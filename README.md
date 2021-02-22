@@ -47,3 +47,6 @@ View Patient's Blood Sugar Level Table By Month<br>
 1. Download "iTrust2" and import it into Eclipse
 2. Right click on the project and select Maven > Update Project
 3. Right click on the project and select Run as > Maven build > Goal:jetty:run > run
+4. Open a web browser (Recommend Google Chrome)
+5. Go to http://localhost:8080/iTrust2/login
+6. Select and click on one of the sample users to login!
