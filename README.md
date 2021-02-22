@@ -1,5 +1,6 @@
 # iTrust3.0
-A web application for patients and health-care personals to view and manage appointments, track food diary, and track blood sugar level
+A web application for patients and health-care personals to view and manage appointments, <br>
+track food diary, and track blood sugar level<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/1.png" height="50%" width="50%"> <br>
 
 ### Login as Patients:
@@ -27,3 +28,13 @@ View blood sugar level by Month<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/11.png" height="50%" width="50%"><br>
 
 ### Login as HCP:
+View Patient's Food Diary<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp1.png" height="50%" width="50%"><br>
+Set Patient's Blood Sugar Limits<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp2.png" height="50%" width="50%"><br>
+View Patient's Blood Sugar Level Table By Day<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp3.png" height="50%" width="50%"><br>
+View Patient's Blood Sugar Level Table By Week<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp4.png" height="50%" width="50%"><br>
+View Patient's Blood Sugar Level Table By Month<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp5.png" height="50%" width="50%"><br>
