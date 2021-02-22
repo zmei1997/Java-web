@@ -1,6 +1,5 @@
 # iTrust3.0
-A web application for patients and health-care personals to view and manage appointments and diagnosis.
-
+A web application for patients and health-care personals to view and manage appointments, track food diary, and track blood sugar level
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/1.png" height="50%" width="50%"> <br>
 
 ### Login as Patients:
@@ -8,6 +7,9 @@ A web application for patients and health-care personals to view and manage appo
 #### Operations: 
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/3.png" height="50%" width="50%">
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/4.png" height="50%" width="50%"> <br>
+
+Manage Appointment Requests<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/14.png" height="50%" width="50%"><br>
 
 Add food diary entries<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/12.png" height="50%" width="50%"><br>
@@ -23,10 +25,5 @@ View blood sugar level by Week<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/10.png" height="50%" width="50%"><br>
 View blood sugar level by Month<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/11.png" height="50%" width="50%"><br>
-Manage Appointment Requests<br>
-<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/14.png" height="50%" width="50%"><br>
-Past Office Visits<br>
-Diagnoses<br>
-Prescriptions<br>
 
 ### Login as HCP:
