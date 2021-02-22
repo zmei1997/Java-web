@@ -28,6 +28,9 @@ View blood sugar level by Month<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/11.png" height="50%" width="50%"><br>
 
 ### Login as HCP:
+View Upcoming Appointments<br>
+Note: Here we login as BobbyOD because the patient requested a appointment with BobbyOD<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp6.png" height="50%" width="50%"><br>
 View Patient's Food Diary<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp1.png" height="50%" width="50%"><br>
 Set Patient's Blood Sugar Limits<br>
