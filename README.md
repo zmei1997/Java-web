@@ -24,6 +24,7 @@ View blood sugar level by Week<br>
 View blood sugar level by Month<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/11.png" height="50%" width="50%"><br>
 Manage Appointment Requests<br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/14.png" height="50%" width="50%"><br>
 Past Office Visits<br>
 Diagnoses<br>
 Prescriptions<br>
