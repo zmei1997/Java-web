@@ -4,7 +4,7 @@ A web application for patients and health-care personals to view and manage appo
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/1.png" height="50%" width="50%"> <br>
 
 ### Login as Patients:
-<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/2.png" height="30%" width="30%"> <br>
+<img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/2.png" height="50%" width="50%"> <br>
 #### Operations: 
 View & request personal representatives, <br>
 View & add food diary entries, <br>
