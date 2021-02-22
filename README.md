@@ -41,3 +41,9 @@ View Patient's Blood Sugar Level Table By Week<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp4.png" height="50%" width="50%"><br>
 View Patient's Blood Sugar Level Table By Month<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/hcp5.png" height="50%" width="50%"><br>
+
+### Run the application locally
+#### Steps
+1. Download "iTrust2" and import it into Eclipse
+2. Right click on the project and select Maven > Update Project
+3. Right click on the project and select Run as > Maven build > Goal:jetty:run > run
