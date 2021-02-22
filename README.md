@@ -11,6 +11,7 @@ A web application for patients and health-care personals to view and manage appo
 
 Add food diary entries<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/12.png" height="50%" width="50%">
+View food diary entries<br>
 <img src="https://github.com/zmei1997/Java-web/blob/master/iTrust2%20Screenshot/13.png" height="50%" width="50%">
 
 Track & view blood sugar level <br>
